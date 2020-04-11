@@ -31,7 +31,6 @@ class Search extends React.Component {
 
         let formattedResults = [];
 
-        //if there are no search results, clear old results
         if (!searchResults) {
           this.setState({ bookSearchResults: [] });
           return;
@@ -55,13 +54,7 @@ class Search extends React.Component {
   }
 
   handleSave(bookItem) {
-    //bookitem = {} in bookSearchResults array
-    //query your backend with axios, hit an Express endpoint
-    //POST
-    //send over book data
-    //temp alert
-    alert("Save Button");
-    //axios.post("/api/books", bookItem);
+    axios.post("/api/books", bookItem);
   }
 
   render() {
@@ -129,41 +122,3 @@ class Search extends React.Component {
 
 export default Search;
 
-/*
-Summary
-
-to do:
-- fix mongodb - need to add "googlebooks" collection. make sure schema works properly
-- Search component: need to map over this.state.bookSearchResults
-	- helpful link: https://medium.com/javascript-in-plain-english/how-to-loop-through-arrays-in-react-3eaa8a14445
-- create Saved Component
- -if you have mongodb setup: use componentDidMount (react lifecycle) -> grab data via express endpoint -> use setState to add data to state -> in render/return, map over data
- 	-also add express endpoints
- -if no mongodb: create dummy data in Saved component state 
- (this.state = { savedBooks: [
-   {title: "Love in the time of Cholera", authors: ["Gabriel Garcia Marquez"]},
-   {title: "The Institute", authors: ["Stephen King"], description: "There is a secret government lab that uses kids' supernatural abilities to hurt criminals." ]}]
-  }
-   - map over it, render book details
-- add View / Save buttons in Search component 
-- add View / Delete buttons in Saved component
-  -for help with adding buttons - https://reactjs.org/docs/handling-events.html
-
-EX:
-        <div>
-          RESULTS: this.state.bookSearchResults.length > 0 &&
-          this.state.bookSearchResults.map(book => {<div>{book.title}</div>})
-        </div>
-
-
-
-
-FOLDER STRUCTURE:
- /components
-	Search.js (already done)
-	Saved.js
- /server
-	/api
-		index.js (controller/routes/ endpoints)
-        
-*/
